@@ -1,6 +1,6 @@
 # excel-sort
 ## Projekta uzdevums
-Projekta uzdevums ir sakārtot Excel faila kolonnu alfabētiski, skaitliski vai pēc datuma, augošā vai dilstošā secībā, atkarībā no lietotāja prasītā un saglabāt jaunā lapā. Projektam ir pievienots piemēra Excel fails.
+Projekta uzdevums ir sakārtot Excel faila kolonnu alfabētiski, skaitliski vai pēc datuma, augošā vai dilstošā secībā, atkarībā no lietotāja prasītā un saglabāt jaunā lapā. Projektam ir pievienots piemēra Excel fails, kuru var izmantot, lai izmēģinātu programmu.
 ## Izmantotās bibliotēkas
 ### Izmantotas sys un pandas bibliotēkas
 **sys** bibliotēka tika izmantota, lai izietu no programmas, ja lietotājs ievadījis nepareizus vai kļūdainus datus.
