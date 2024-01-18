@@ -10,6 +10,11 @@ except FileNotFoundError:
 except Exception as e:
     print(f"Kļūda lasot failu: {e}")
     sys.exit()
+def cs(value):
+    try:
+        return float(value)
+    except ValueError:
+        return float('inf')
 into=input("Kā vēlaties sakārtot kolonnu? (Alfabētiski, skaitliski, datums) ")
 if(into.lower() == 'alfabētiski' or  into.lower() == 'alfabetiski' ):
     sort=input("Augoši vai dilstoši? ")
@@ -57,12 +62,7 @@ elif(into == 'skaitliski' ):
     if(sort.lower() == 'augoši' or sort.lower() == 'augosi' ):
         col=input("Kura kolonna? (Ierakstiet kolonnas nosaukumu) ")
         try:
-            if ex[col].dtype in ['int64', 'float64']:
-                ex['temp'] = ex[col].astype(str)
-                ex['temp'] = ex['temp'].str.replace('[^\d.]', '', regex=True)
-                ex['temp'] = ex['temp'].replace('', 'NaN').astype(float)
-                ex = ex.sort_values(by='temp', na_position='last')
-                ex = ex.drop(columns=['temp'])
+            ex = ex.sort_values(by=col,key=lambda x: x.map(cs), na_position='last')
         except KeyError:
             print(f"Kolonna {col} nav atrasta")
             sys.exit()
@@ -75,12 +75,7 @@ elif(into == 'skaitliski' ):
     elif(sort.lower() == 'dilstoši' or sort.lower() == 'dilstosi' ):
         col=input("Kura kolonna? (Ierakstiet kolonnas nosaukumu) ")
         try:
-            if ex[col].dtype in ['int64', 'float64']:
-                ex['temp'] = ex[col].astype(str)
-                ex['temp'] = ex['temp'].str.replace('[^\d.]', '', regex=True)
-                ex['temp'] = ex['temp'].replace('', 'NaN').astype(float)
-                ex = ex.sort_values(by='temp',ascending=False, na_position='last')
-                ex = ex.drop(columns=['temp'])
+            ex = ex.sort_values(by=col,ascending=False,key=lambda x: x.map(cs), na_position='last')
         except KeyError:
             print(f"Kolonna {col} nav atrasta")
             sys.exit()
